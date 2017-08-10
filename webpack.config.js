@@ -19,6 +19,15 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   module: {
+    preLoaders: [ //добавили ESlint в preloaders
+      {
+        test: /\.js$/,
+        loaders: ['eslint'],
+        include: [
+          path.resolve(__dirname, "src"),
+        ],
+      }
+    ],    
     loaders: [
       {
         loaders: ['react-hot', 'babel-loader'], //добавили loader 'react-hot'
