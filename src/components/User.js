@@ -13,7 +13,7 @@ export default class User extends Component {
       template = <button className='btn' onClick={this.props.handleLogin}>Войти</button>
     }
 
-    return <div className='ib user'>
+    return <div className='user'>
       {template}
       {error ? <p className='error'> {error}. <br /> Попробуйте еще раз.</p> : ''}
     </div>
