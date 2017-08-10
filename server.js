@@ -2,13 +2,20 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const config = require('./webpack.config')
-
+const express = require('express');
 const app = new (require('express'))()
-const port = 3001
+const path = require('path');
 
-const compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
+const port = process.env.PORT || 3000;
+const env = process.env.NODE_ENV || 'production';
+
+const compiler = webpack(config);
+
+if (env !== 'production') {
+  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
+  app.use(webpackHotMiddleware(compiler))
+}
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + '/index.html')
