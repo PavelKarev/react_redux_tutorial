@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
-    "start": "node_modules/.bin/webpack build"
+    "server": "node server.js",
+    "start": "node_modules/.bin/webpack build && npm run server"
   },
   "author": "",
   "license": "MIT",
